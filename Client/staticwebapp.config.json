@@ -1,5 +1,39 @@
 {
-    "navigationFallback": {
-        "rewrite": "/index.html"
+  "routes": [
+    {
+      "route": "/profile",
+      "allowedRoles": [ "authenticated" ]
+    },
+    {
+      "route": "/admin/*",
+      "allowedRoles": [ "administrator" ]
+    },
+    
+    {
+      "route": "/api/*",
+      "methods": [ "GET" ],
+      "allowedRoles": [ "authenticated" ]
+    },
+    {
+      "route": "/api/*",
+      "methods": [ "PUT", "POST", "PATCH", "DELETE" ],
+      "allowedRoles": [ "contributor" ]
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": [ "contributor" ]
+    } 
+    
+  ],
+
+  "responseOverrides": {
+    "401": {
+      "statusCode": 302,
+      "redirect": "/login"
     }
+  },
+
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
 }
