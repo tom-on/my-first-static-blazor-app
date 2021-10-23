@@ -51,7 +51,7 @@ namespace BlazorApp.Api
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = temp = randomNumber.Next(-20, 55),
-                Summary = $"{GetSummary(temp)} - User{principal.Identity}; Roles count: {roles.Count()}, roles for user: {string.Concat(roles.Select(r => r))}"
+                Summary = $"{GetSummary(temp)} - User{principal.Identity.Name}; Roles count: {roles.Count()}, roles for user: {string.Concat(roles.Select(r => r))}"
             }).ToArray();
 
             return new OkObjectResult(result);
