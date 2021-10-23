@@ -45,13 +45,13 @@ namespace BlazorApp.Api
             ClaimsPrincipal principal = UserInfoProvider.Parse(req);
             var randomNumber = new Random();
             var temp = 0;
-            var roles = principal.Claims.Where(e => e.Type == "role").Select(e => e.Value);
+            var roles = principal.Claims.Where(e => e.Type == ClaimTypes.Role).Select(e => e.Value);
 
             var result = Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = temp = randomNumber.Next(-20, 55),
-                Summary = $"{GetSummary(temp)} roles count: {roles.Count()}, roles for user: {string.Concat(roles.Select(r => r))}"
+                Summary = $"{GetSummary(temp)} - User{principal.Identity}; Roles count: {roles.Count()}, roles for user: {string.Concat(roles.Select(r => r))}"
             }).ToArray();
 
             return new OkObjectResult(result);
