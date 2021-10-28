@@ -1,0 +1,14 @@
+﻿@page "/login/"
+@page "/login/{backPage}"
+@inject NavigationManager navigator
+
+<LoginProviders PostLoginUrl=@BackUrl />
+
+@code {
+
+    [Parameter]
+    public string BackPage { get; set; }
+    
+    private string BackUrl => navigator.ToAbsoluteUri(BackPage).AbsoluteUri;
+
+}

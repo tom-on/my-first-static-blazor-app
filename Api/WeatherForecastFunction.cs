@@ -51,10 +51,31 @@ namespace BlazorApp.Api
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = temp = randomNumber.Next(-20, 55),
-                Summary = $"{GetSummary(temp)} - User{principal.Identity.Name}; Roles count: {roles.Count()}, roles for user: {string.Concat(roles.Select(r => r))}"
+                Summary = $"{GetSummary(temp)} - User: {principal.Identity.Name}; Roles count: {roles.Count()}, roles for user: {string.Concat(roles.Select(r => r))}"
             }).ToArray();
 
             return new OkObjectResult(result);
+        }
+
+        [FunctionName("UserInfo")]
+        public static IActionResult GetUserInfo(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            ClaimsPrincipal principal = UserInfoProvider.Parse(req);
+
+            
+            try
+            {
+                var principalJson = JsonSerializer.Serialize(principal, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                //var p = principal.ToString();
+                return new OkObjectResult(principalJson);
+            }
+            catch (Exception ex)
+            {
+
+                return new NotFoundResult();
+            }
         }
     }
 

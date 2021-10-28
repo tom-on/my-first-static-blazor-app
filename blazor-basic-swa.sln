@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3DC4D146-5318-4FB7-B96D-91E6DFD7AEBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorUtils", "BlazorUtils\BlazorUtils.csproj", "{F00870B2-7C24-4EFF-8303-1B2DE3880E69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorUtils", "BlazorUtils\BlazorUtils.csproj", "{F00870B2-7C24-4EFF-8303-1B2DE3880E69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazroComponents", "BlazroComponents\BlazroComponents.csproj", "{BFE89681-33CC-4A32-B77F-7322FEB02F56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F00870B2-7C24-4EFF-8303-1B2DE3880E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F00870B2-7C24-4EFF-8303-1B2DE3880E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F00870B2-7C24-4EFF-8303-1B2DE3880E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE89681-33CC-4A32-B77F-7322FEB02F56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE89681-33CC-4A32-B77F-7322FEB02F56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE89681-33CC-4A32-B77F-7322FEB02F56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE89681-33CC-4A32-B77F-7322FEB02F56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

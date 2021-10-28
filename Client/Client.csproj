@@ -15,11 +15,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorUtils\BlazorUtils.csproj" />
+    <ProjectReference Include="..\BlazroComponents\BlazroComponents.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Components\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
