@@ -1,10 +1,10 @@
 ﻿@{
-    var providers = new Dictionary<string, string>
+    var providers = new List<(string Provider, string Button, string FaIcon, string Name)>
     {
-        {"aad", "Azure" },
-        { "github", "GitHub" },
-        { "twitter", "Twitter" },
-        { "facebook", "Facebook" }
+        ("aad", "microsoft","windows", "Microsoft" ),
+        ( "github","github","github", "GitHub" ),
+        ( "twitter","twitter","twitter", "Twitter" ),
+        ( "facebook","facebook","facebook", "Facebook" )
     };
 }
 
@@ -21,8 +21,8 @@
             {
                 <div class="row">
                     <div class="col-sm-12 col-md-9 col-lg-6">
-                        <a class="btn btn-block btn-lg btn-social btn-@provider.Key" href="/.auth/login/@provider.Key?post_login_redirect_uri=@PostLoginUrl">
-                            <span class="fa fa-@provider.Key"></span> Sign in with @provider.Value
+                        <a class="btn btn-block btn-lg btn-social btn-@provider.Button" href="/.auth/login/@provider.Provider?post_login_redirect_uri=@PostLoginUrl">
+                            <span class="fa fa-@provider.FaIcon"></span> Sign in with @provider.Name
                         </a>
                     </div>
                 </div>
