@@ -23,13 +23,17 @@ namespace BlazorApp.Api
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "secured/UserInfo")] HttpRequest req,
             ILogger log, ClaimsPrincipal principal)
         {
-            ClientPrincipal clientPrincipal = principal.ToClientPrincipal();
 
 
             try
             {
-                var principalJson = JsonSerializer.Serialize(clientPrincipal, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                //var p = principal.ToString();
+                if (!principal.Identity.IsAuthenticated)
+                {
+                    return new NotFoundResult();
+                }
+
+                ClientPrincipal clientPrincipal = principal.ToClientPrincipal();
+                var principalJson = JsonSerializer.Serialize(clientPrincipal, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }); 
                 return new OkObjectResult(principalJson);
             }
             catch (Exception ex)

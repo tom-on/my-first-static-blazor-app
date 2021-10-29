@@ -56,6 +56,7 @@
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
+            Console.WriteLine("Inner exception:");
             Console.WriteLine(ex.InnerException.ToString());
         }
     }
@@ -63,7 +64,7 @@
     private void SetAuthState(ClaimsPrincipal user)
     {
         _claims = user.Claims;
-        _authMessage = $"Claims count: {_claims.Count()}";
+        _authMessage = $"Claims count: {_claims.Count()}.";
         if (user?.Identity?.IsAuthenticated == true)
         {
             foreach (var identity in user.Identities)

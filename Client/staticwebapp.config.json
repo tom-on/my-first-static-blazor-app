@@ -7,23 +7,12 @@
     {
       "route": "/admin/*",
       "allowedRoles": [ "administrator" ]
-    },
-    
-    {
-      "route": "/api/*",
-      "methods": [ "GET" ],
-      "allowedRoles": [ "authenticated" ]
-    },
+    }, 
     {
       "route": "/api/*",
       "methods": [ "PUT", "POST", "PATCH", "DELETE" ],
       "allowedRoles": [ "contributor" ]
-    },
-    {
-      "route": "/api/*",
-      "allowedRoles": [ "contributor" ]
-    } 
-    
+    }
   ],
 
   "responseOverrides": {
