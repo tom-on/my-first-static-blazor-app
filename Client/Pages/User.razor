@@ -45,7 +45,11 @@
     {
         try
         {
-            var claims = await Http.GetFromJsonAsync<ClaimsPrincipal>("/api/UserInfo");
+            var clientPrincipal = await Http.GetFromJsonAsync<ClientPrincipal>("/api/secured/UserInfo");
+
+            Console.WriteLine($"Clientprincipal claims: {clientPrincipal.Claims.Count()}");
+
+            var claims = clientPrincipal.ToClaimsPrincipal();
             
             SetAuthState(claims);
         }
@@ -58,6 +62,8 @@
 
     private void SetAuthState(ClaimsPrincipal user)
     {
+        _claims = user.Claims;
+        _authMessage = $"Claims count: {_claims.Count()}";
         if (user?.Identity?.IsAuthenticated == true)
         {
             foreach (var identity in user.Identities)
@@ -66,13 +72,12 @@
                 var authName = identity.Name;
                 _authMessage += $"{user.Identity.Name} is authenticated. Auth type: {authType}";
             }
-            _claims = user.Claims;
             _surnameMessage =
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            _authMessage += "The user is NOT authenticated.";
         }
     }
 }
