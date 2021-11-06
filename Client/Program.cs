@@ -5,6 +5,7 @@ using BlazorUtils.StaticExtentions;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using MudBlazor.Services;
 
 namespace BlazorApp.Client
 {
@@ -19,7 +20,9 @@ namespace BlazorApp.Client
             builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(baseAddress) });
 
            
-                builder.Services.AddStaticWebAppsAuthentication(); 
+            builder.Services.AddStaticWebAppsAuthentication();
+            builder.Services.AddMudServices();
+
 
             await builder.Build().RunAsync();
         }
