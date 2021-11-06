@@ -71,7 +71,7 @@
             {
                 var authType = identity.AuthenticationType;
                 var authName = identity.Name;
-                _authMessage += $"{user.Identity.Name} is authenticated. Auth type: {authType}";
+                _authMessage += $"{user.Identity.Name} is authenticated. Auth type: {authType}, Auth name: {authName}";
             }
             _surnameMessage =
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
