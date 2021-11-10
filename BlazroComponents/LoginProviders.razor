@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject IStringLocalizer<LogInStatus> _loc
+@{
+
     var providers = new List<(string Provider, string Button, string FaIcon, string Name)>
     {
         ("aad", "microsoft","windows", "Microsoft" ),
@@ -10,11 +12,10 @@
 
 <AuthorizeView>
     <Authorized>
-        Hello, @context.User.Identity.Name!
-        <a href="/.auth/logout?post_logout_redirect_uri=@PostLogoutUrl">Log out</a>        
+        <LogInStatus LogOutUrl=@($"/.auth/logout?post_logout_redirect_uri={PostLogoutUrl}")/>   
     </Authorized>
     <NotAuthorized>
-        <h1>Login</h1>
+        <h1>@_loc["Log in with"]</h1>
 
         <div class="container">
             @foreach (var provider in providers)
@@ -22,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-9 col-lg-6">
                         <a class="btn btn-block btn-lg btn-social btn-@provider.Button" href="/.auth/login/@provider.Provider?post_login_redirect_uri=@PostLoginUrl">
-                            <span class="fa fa-@provider.FaIcon"></span> Sign in with @provider.Name
+                            <span class="fa fa-@provider.FaIcon"></span> @provider.Name
                         </a>
                     </div>
                 </div>

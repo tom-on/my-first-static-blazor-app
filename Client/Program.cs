@@ -21,7 +21,10 @@ namespace BlazorApp.Client
 
            
             builder.Services.AddStaticWebAppsAuthentication();
-            builder.Services.AddMudServices();
+            builder.Services.AddMudServices().AddLocalization(options =>
+            {
+                options.ResourcesPath = "Resources";                
+            });
 
 
             await builder.Build().RunAsync();

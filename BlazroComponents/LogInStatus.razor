@@ -1,0 +1,26 @@
+﻿@inject IStringLocalizer<LogInStatus> _loc
+ 
+<AuthorizeView>
+            <Authorized>
+                @_loc["Hello"] @context.User.Identity.Name 
+                <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Edge="Edge.End" Link=@LogOutUrl>
+                    @_loc["Log out"]
+                </MudIconButton>
+            </Authorized>
+            <NotAuthorized>
+                <MudIconButton Icon="@Icons.Material.Filled.Login" Color="Color.Inherit" Edge="Edge.End" Link=@LogInUrl>
+                    @_loc["Log in"]
+                </MudIconButton>
+            </NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+    [Parameter]
+    public string LogInUrl { get; set; }
+    
+    [Parameter]
+    public string LogOutUrl { get; set; }
+
+
+}
