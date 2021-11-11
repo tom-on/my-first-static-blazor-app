@@ -26,17 +26,17 @@ namespace BlazorApp.Api
         {
             try
             {
-                if (!principal.Identity.IsAuthenticated)
-                {
-                    return new NotFoundResult();
-                }
+                //if (!principal.Identity.IsAuthenticated)
+                //{
+                //    return new NotFoundResult();
+                //}
+
+                //if(!user.Identity.IsAuthenticated)
+                //{
+                //    return new NotFoundResult();
+                //}
 
                 var user = _userInfoProvider.Parse(req);
-                if(!user.Identity.IsAuthenticated)
-                {
-                    return new NotFoundResult();
-                }
-
                 var clientFromReq = user.ToClientPrincipal();
 
                 
