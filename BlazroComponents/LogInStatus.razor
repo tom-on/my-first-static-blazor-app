@@ -3,14 +3,20 @@
 <AuthorizeView>
             <Authorized>
                 @_loc["Hello"] @context.User.Identity.Name 
-                <MudIconButton Icon="@Icons.Material.Filled.Logout" Color="Color.Inherit" Edge="Edge.End" Link=@LogOutUrl>
+                <MudButton Link=@LogOutUrl
+                    Variant="Variant.Filled"
+                    EndIcon="@Icons.Material.Filled.Logout"
+                    Color="Color.Primary">
                     @_loc["Log out"]
-                </MudIconButton>
+                 </MudButton>
             </Authorized>
-            <NotAuthorized>
-                <MudIconButton Icon="@Icons.Material.Filled.Login" Color="Color.Inherit" Edge="Edge.End" Link=@LogInUrl>
+            <NotAuthorized> 
+                <MudButton Link=@LogInUrl
+                    Variant="Variant.Filled"
+                    EndIcon="@Icons.Material.Filled.Logout"
+                    Color="Color.Primary">
                     @_loc["Log in"]
-                </MudIconButton>
+                 </MudButton>
             </NotAuthorized>
 </AuthorizeView>
 

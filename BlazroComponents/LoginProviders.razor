@@ -12,7 +12,7 @@
 
 <AuthorizeView>
     <Authorized>
-        <LogInStatus LogOutUrl=@($"/.auth/logout?post_logout_redirect_uri={PostLogoutUrl}")/>   
+        <LogInStatus LogOutUrl="/.auth/logout"/>   
     </Authorized>
     <NotAuthorized>
         <h1>@_loc["Log in with"]</h1>
@@ -22,7 +22,7 @@
             {
                 <div class="row">
                     <div class="col-sm-12 col-md-9 col-lg-6">
-                        <a class="btn btn-block btn-lg btn-social btn-@provider.Button" href="/.auth/login/@provider.Provider?post_login_redirect_uri=@PostLoginUrl">
+                        <a class="btn btn-block btn-lg btn-social btn-@provider.Button" href="/.auth/login/@provider.Provider">
                             <span class="fa fa-@provider.FaIcon"></span> @provider.Name
                         </a>
                     </div>

@@ -17,7 +17,7 @@
         </AuthorizeView>
         <MudText Typo="Typo.h5" Class="ml-3">NiePolecamTego.pl</MudText>
         <MudSpacer />        
-        <LogInStatus LogInUrl=@($"/login/{NavManager.ToBaseRelativePath(NavManager.Uri)}") LogOutUrl=@($"/.auth/logout?post_logout_redirect_uri={NavManager.ToBaseRelativePath(NavManager.Uri)}")/>
+        <LogInStatus LogInUrl=@($"/login") LogOutUrl=@($"/.auth/logout")/>
     </MudAppBar>
 
     <AuthorizeView>

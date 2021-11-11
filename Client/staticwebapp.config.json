@@ -7,7 +7,7 @@
     {
       "route": "/admin/*",
       "allowedRoles": [ "administrator" ]
-    }, 
+    },
     {
       "route": "/api/*",
       "methods": [ "PUT", "POST", "PATCH", "DELETE" ],
@@ -16,13 +16,22 @@
   ],
 
   "responseOverrides": {
+    "400": {
+      "rewrite": "/invalid-invitation-error.html"
+    },
     "401": {
-      "statusCode": 302,
-      "redirect": "/login"
+      "redirect": "/login",
+      "statusCode": 302
+    },
+    "403": {
+      "rewrite": "/custom-forbidden-page.html"
+    },
+    "404": {
+      "rewrite": "/404.html"
     }
   },
 
   "navigationFallback": {
     "rewrite": "/index.html"
-  }
+  } 
 }
