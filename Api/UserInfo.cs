@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using BlazorApp.Shared;
 using System.Text.Json;
 using System.Security.Claims;
+using System.Collections.Generic;
 
 namespace BlazorApp.Api
 {
@@ -23,8 +24,6 @@ namespace BlazorApp.Api
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "secured/UserInfo")] HttpRequest req,
             ILogger log, ClaimsPrincipal principal)
         {
-
-
             try
             {
                 if (!principal.Identity.IsAuthenticated)
@@ -32,8 +31,20 @@ namespace BlazorApp.Api
                     return new NotFoundResult();
                 }
 
+                var user = _userInfoProvider.Parse(req);
+                if(!user.Identity.IsAuthenticated)
+                {
+                    return new NotFoundResult();
+                }
+
+                var clientFromReq = user.ToClientPrincipal();
+
+                
+
                 ClientPrincipal clientPrincipal = principal.ToClientPrincipal();
-                var principalJson = JsonSerializer.Serialize(clientPrincipal, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }); 
+
+                var principals = new List<ClientPrincipal>() { clientFromReq, clientPrincipal };
+                var principalJson = JsonSerializer.Serialize(principals, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }); 
                 return new OkObjectResult(principalJson);
             }
             catch (Exception ex)

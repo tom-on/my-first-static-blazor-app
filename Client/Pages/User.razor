@@ -45,13 +45,16 @@
     {
         try
         {
-            var clientPrincipal = await Http.GetFromJsonAsync<ClientPrincipal>("/api/secured/UserInfo");
+            var clientPrincipal = await Http.GetStringAsync("/api/secured/UserInfo");
 
-            Console.WriteLine($"Clientprincipal claims: {clientPrincipal.Claims.Count()}");
+            _authMessage = clientPrincipal;
 
-            var claims = clientPrincipal.ToClaimsPrincipal();
+            //Console.WriteLine($"Clientprincipal from req claims: {clientPrincipal[0].Claims.Count()}");
+            //Console.WriteLine($"Clientprincipal claims: {clientPrincipal[1].Claims.Count()}");
+
+            //var claims = clientPrincipa[0].ToClaimsPrincipal();
             
-            SetAuthState(claims);
+            //SetAuthState(claims);
         }
         catch (Exception ex)
         {
