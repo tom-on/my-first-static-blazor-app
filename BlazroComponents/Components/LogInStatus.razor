@@ -1,12 +1,13 @@
-﻿@inject IStringLocalizer<LogInStatus> _loc
+﻿@inject NavigationManager _nav
+@inject IStringLocalizer<LogInStatus> _loc
  
 <AuthorizeView>
             <Authorized>
                 @_loc["Hello"] @context.User.Identity.Name 
-                <MudButton Link=@LogOutUrl
-                    Variant="Variant.Filled"
+                <MudButton Variant="Variant.Filled"
                     EndIcon="@Icons.Material.Filled.Logout"
-                    Color="Color.Primary">
+                    Color="Color.Primary"
+                    OnClick=LogOut>
                     @_loc["Log out"]
                  </MudButton>
             </Authorized>
@@ -24,9 +25,12 @@
 
     [Parameter]
     public string LogInUrl { get; set; }
-    
+
     [Parameter]
     public string LogOutUrl { get; set; }
+
+    private void LogOut() => _nav.NavigateTo(LogOutUrl, forceLoad: true);
+
 
 
 }
