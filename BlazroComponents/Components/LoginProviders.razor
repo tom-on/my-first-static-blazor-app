@@ -1,0 +1,52 @@
+﻿@inject IStringLocalizer<LoginProviders> _loc
+@inject NavigationManager _nav
+
+@{
+
+    var providers = new List<(string Provider, string Button, string FaIcon, string Name)>
+    {
+        ("aad", "microsoft","windows", "Microsoft" ),
+        ( "github","github","github", "GitHub" ),
+        ( "twitter","twitter","twitter", "Twitter" ),
+        ( "facebook","facebook","facebook", "Facebook" ),
+        ( "google","google","google", "google" )
+
+    };
+}
+
+<AuthorizeView>
+    <Authorized>
+        <LogInStatus LogOutUrl="/.auth/logout"/>   
+    </Authorized>
+    <NotAuthorized>
+        <MudPaper Class="pa-6" Elevation=2 >
+        <h3>@_loc["Log in with"]</h3>
+
+                @foreach (var provider in providers)
+                {
+                    <div class="mt-2"> 
+                        <a class="btn btn-block btn-lg btn-social btn-@provider.Button text-center" href=@($"{_nav.BaseUri}/.auth/login/{provider.Provider}")>
+                                <span class="fa fa-@provider.FaIcon"></span> @provider.Name
+                        </a>
+                    </div>
+                }
+        </MudPaper>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code
+{
+    [Parameter]
+    public string PostLoginUrl { get; set; }
+
+    [Parameter]
+    public string PostLogoutUrl { get; set; }
+}
+
+
+   @*<div class="row mt-2"> 
+                        <a class="btn btn-block btn-lg btn-social btn-@provider.Button text-center" href="/.auth/login/@provider.Provider">
+                                <span class="fa fa-@provider.FaIcon"></span> @provider.Name
+                        </a>
+                    </div>*@

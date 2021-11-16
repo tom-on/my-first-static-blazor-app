@@ -2,7 +2,7 @@
 @inject NavigationManager NavManager
 
 
-<MudThemeProvider />
+<MudThemeProvider Theme="MyCustomTheme"/>
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -15,9 +15,9 @@
                 <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
             </Authorized>
         </AuthorizeView>
-        <MudText Typo="Typo.h5" Class="ml-3">NiePolecamTego.pl</MudText>
+        <MudText Typo="Typo.h5" Class="ml-3">NiePolecamTego.pl - beta</MudText>
         <MudSpacer />        
-        <LogInStatus LogInUrl=@($"/login") LogOutUrl=@($"/.auth/logout")/>
+        <LogInStatus LogInUrl=@($"/login") LogOutUrl=@($"{NavManager.BaseUri}/.auth/logout")/>
     </MudAppBar>
 
     <AuthorizeView>
@@ -42,4 +42,20 @@
     {
         _drawerOpen = !_drawerOpen;
     }
+
+    MudTheme MyCustomTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Primary = Colors.Blue.Default,
+            Secondary = Colors.Green.Accent4,
+            AppbarBackground = Colors.Red.Accent1,
+        },
+
+        LayoutProperties = new LayoutProperties()
+        {
+            DrawerWidthLeft = "260px",
+            DrawerWidthRight = "300px"
+        }
+    };
 } 

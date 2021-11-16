@@ -117,10 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Log in" xml:space="preserve">
-    <value>Log in</value>
-  </data>
-  <data name="Log out" xml:space="preserve">
-    <value>Log out</value>
+  <data name="Log in with" xml:space="preserve">
+    <value>Log in with</value>
   </data>
 </root>

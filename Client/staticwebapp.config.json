@@ -12,6 +12,22 @@
       "route": "/api/*",
       "methods": [ "PUT", "POST", "PATCH", "DELETE" ],
       "allowedRoles": [ "contributor" ]
+    },
+    {
+      "route": "/facebook",
+      "rewrite": ".auth/login/facebook"
+    },
+    {
+      "route": "/github",
+      "rewrite": ".auth/login/github"
+    },
+    {
+      "route": "/twitter",
+      "rewrite": ".auth/login/twitter"
+    },
+    {
+      "route": "/microsoft",
+      "rewrite": ".auth/login/aad"
     }
   ],
 

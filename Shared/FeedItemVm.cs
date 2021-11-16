@@ -6,4 +6,4 @@ using System.Threading.Tasks;
 
 namespace BlazorApp.Shared;
 
-public record FeedItemDto(string Id, string Name, string Description);
+public record FeedItemVm(string Id, string Name, string Description);

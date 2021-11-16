@@ -1,0 +1,19 @@
+﻿<MudGrid>
+
+@foreach (var item in FeedItems)
+{
+    <MudItem xs=3>
+    <FeedItemCard Item=@item  DetailsUrl=@GetDetailsUrlFor(item)/>    
+    </MudItem>
+}
+
+</MudGrid>
+@code {
+    [Parameter]
+    public IEnumerable<FeedItemVm> FeedItems { get; set; }
+
+    [Parameter]
+    public Func<FeedItemVm, string> CreateDetailsUrl { get; set; }
+
+    private string GetDetailsUrlFor(FeedItemVm item) => CreateDetailsUrl is null? string.Empty : CreateDetailsUrl(item);
+}

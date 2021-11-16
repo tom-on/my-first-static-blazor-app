@@ -11,47 +11,45 @@ using System.Text.Json;
 using System.Security.Claims;
 using System.Collections.Generic;
 
-namespace BlazorApp.Api
+namespace BlazorApp.Api;
+public class UserInfo
 {
-    public class UserInfo
+    private readonly IUserInfoProvider _userInfoProvider;
+
+    public UserInfo(IUserInfoProvider provider) => _userInfoProvider = provider;
+
+    [FunctionName("UserInfo")]
+    public async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Function, "get", Route = "secured/UserInfo")] HttpRequest req,
+        ILogger log, ClaimsPrincipal principal)
     {
-        private readonly IUserInfoProvider _userInfoProvider;
-
-        public UserInfo(IUserInfoProvider provider) => _userInfoProvider = provider;
-
-        [FunctionName("UserInfo")]
-        public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "secured/UserInfo")] HttpRequest req,
-            ILogger log, ClaimsPrincipal principal)
+        try
         {
-            try
-            {
-                //if (!principal.Identity.IsAuthenticated)
-                //{
-                //    return new NotFoundResult();
-                //}
+            //if (!principal.Identity.IsAuthenticated)
+            //{
+            //    return new NotFoundResult();
+            //}
 
-                //if(!user.Identity.IsAuthenticated)
-                //{
-                //    return new NotFoundResult();
-                //}
+            //if(!user.Identity.IsAuthenticated)
+            //{
+            //    return new NotFoundResult();
+            //}
 
-                var user = _userInfoProvider.Parse(req);
-                var clientFromReq = user.ToClientPrincipal();
+            var user = _userInfoProvider.Parse(req);
+            var clientFromReq = user.ToClientPrincipal();
 
-                
 
-                ClientPrincipal clientPrincipal = principal.ToClientPrincipal();
 
-                var principals = new List<ClientPrincipal>() { clientFromReq, clientPrincipal };
-                var principalJson = JsonSerializer.Serialize(principals, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }); 
-                return new OkObjectResult(principalJson);
-            }
-            catch (Exception ex)
-            {
-                log.LogError(ex, "UserInfo failure");
-                return new NotFoundResult();
-            }
+            ClientPrincipal clientPrincipal = principal.ToClientPrincipal();
+
+            var principals = new List<ClientPrincipal>() { clientFromReq, clientPrincipal };
+            var principalJson = JsonSerializer.Serialize(principals, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return new OkObjectResult(principalJson);
+        }
+        catch (Exception ex)
+        {
+            log.LogError(ex, "UserInfo failure");
+            return new NotFoundResult();
         }
     }
 }

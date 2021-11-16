@@ -1,5 +1,4 @@
 ﻿@inject NavigationManager _nav
-<MudButton Class="mud-width-full" OnClick=GoToDetails>
     <MudCard Class="mud-width-full">
         <MudCardHeader>
             <CardHeaderContent>
@@ -21,16 +20,11 @@
             <MudButton Variant="Variant.Text" Color="Color.Primary">Dodaj negatywa</MudButton>
         </MudCardActions>
     </MudCard>
-</MudButton>
 @code {
+    
+    [Parameter]
+    public FeedItemVm Item { get; set; } = new FeedItemVm("1","Item title","Item description which can be here realllly loong and it should still fit on the page");
 
     [Parameter]
-    public FeedItemVm Item { get; set; }
-    [Parameter]
-    public string DetailsUrl { get; set; }
-
-
-    private void GoToDetails() => _nav.NavigateTo(DetailsUrl);
-
-  
+    public string DetailsUrl { get; set; } 
 }

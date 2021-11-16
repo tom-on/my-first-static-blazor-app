@@ -1,5 +1,21 @@
 ﻿@page "/"
 
-<h1>Hello!</h1>
+<Feed FeedItems=@FeedItems CreateDetailsUrl=@(item => $"/details/{item.Id}")/>
 
-Welcome to your new app. 
+@code{
+    List<FeedItemVm> FeedItems { get; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        FeedItems.AddRange(new List<FeedItemVm>(){
+            new FeedItemVm("1","TestItem1", "Test of Item 1")
+        ,new FeedItemVm("2","TestItem2", "Test of Item 2")
+        ,new FeedItemVm("3","TestItem3", "Test of Item 3 with very very looong description tekst")
+        ,new FeedItemVm("4","TestItem4", "Test of Item 4")
+        ,new FeedItemVm("5","TestItem5", "Test of Item 5")
+        });
+    }
+
+}

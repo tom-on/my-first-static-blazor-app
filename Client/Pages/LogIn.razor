@@ -1,8 +1,11 @@
 ﻿@page "/login/"
 @page "/login/{backPage}"
 @inject NavigationManager navigator
+<PageTitle>Login or not</PageTitle>
 
-<LoginProviders PostLoginUrl=@BackUrl />
+<MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="mt-6">
+    <LoginProviders PostLoginUrl=@BackUrl />
+</MudContainer>
 
 @code {
 
