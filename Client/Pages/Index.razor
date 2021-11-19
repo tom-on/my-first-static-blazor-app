@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+<PageTitle>NiePolecamTego</PageTitle>
+
 <Feed FeedItems=@FeedItems CreateDetailsUrl=@(item => $"/details/{item.Id}")/>
 
 @code{

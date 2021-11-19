@@ -29,7 +29,7 @@
     [Parameter]
     public string LogOutUrl { get; set; }
 
-    private void LogOut() => _nav.NavigateTo(LogOutUrl, forceLoad: true);
+    private void LogOut() => _nav.NavigateTo(LogOutUrl, forceLoad: true, replace:true );
 
 
 

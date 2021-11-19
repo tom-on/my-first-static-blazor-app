@@ -1,6 +1,6 @@
 ﻿@page "/login/"
 @page "/login/{backPage}"
-@inject NavigationManager navigator
+@inject NavigationManager Nav
 <PageTitle>Login or not</PageTitle>
 
 <MudContainer MaxWidth="MaxWidth.ExtraSmall" Class="mt-6">
@@ -12,6 +12,6 @@
     [Parameter]
     public string BackPage { get; set; }
     
-    private string BackUrl => navigator.ToAbsoluteUri(BackPage).AbsoluteUri;
+    private string BackUrl => Nav.ToAbsoluteUri(BackPage).AbsoluteUri;
 
 }

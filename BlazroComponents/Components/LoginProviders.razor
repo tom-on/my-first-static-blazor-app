@@ -25,9 +25,9 @@
                 @foreach (var provider in providers)
                 {
                     <div class="mt-2"> 
-                        <a class="btn btn-block btn-lg btn-social btn-@provider.Button text-center" href=@($"{_nav.BaseUri}.auth/login/{provider.Provider}")>
+                        <button class="btn btn-block btn-lg btn-social btn-@provider.Button text-center" @onclick="@((e) => LogIn($"{_nav.BaseUri}.auth/login/{provider.Provider}"))">
                                 <span class="fa fa-@provider.FaIcon"></span> @provider.Name
-                        </a>
+                        </button>
                     </div>
                 }
         </MudPaper>
@@ -42,7 +42,12 @@
 
     [Parameter]
     public string PostLogoutUrl { get; set; }
+
+    public void LogIn(string logInUrl) => _nav.NavigateTo(logInUrl, forceLoad:true);
+
+
 }
+
 
 
    @*<div class="row mt-2"> 
