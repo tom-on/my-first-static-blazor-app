@@ -11,7 +11,7 @@
     {
       "route": "/api/*",
       "methods": [ "PUT", "POST", "PATCH", "DELETE" ],
-      "allowedRoles": [ "contributor" ]
+      "allowedRoles": [ "authenticated" ]
     },
     {
       "route": "/facebook",
